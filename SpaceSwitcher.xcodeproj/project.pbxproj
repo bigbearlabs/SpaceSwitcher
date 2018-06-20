@@ -7,20 +7,69 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		51AAC6D120DA78D50000CBE9 /* SpaceSwitcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 51AAC6CF20DA78D50000CBE9 /* SpaceSwitcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		51AAC70620DA79400000CBE9 /* SpaceSwitcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		51AAC71620DA79B80000CBE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC71520DA79B80000CBE9 /* AppDelegate.swift */; };
+		51AAC71820DA79B80000CBE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC71720DA79B80000CBE9 /* ViewController.swift */; };
+		51AAC71A20DA79B90000CBE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51AAC71920DA79B90000CBE9 /* Assets.xcassets */; };
+		51AAC71D20DA79B90000CBE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51AAC71B20DA79B90000CBE9 /* Main.storyboard */; };
+		51AAC72320DA79CD0000CBE9 /* SpaceSwitcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51AAC70220DA79400000CBE9 /* SpaceSwitcher.framework */; };
+		51AAC72420DA79CD0000CBE9 /* SpaceSwitcher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 51AAC70220DA79400000CBE9 /* SpaceSwitcher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		51AAC72920DA7A3A0000CBE9 /* SpaceSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC72820DA7A3A0000CBE9 /* SpaceSwitcher.swift */; };
+		51AAC72B20DAE7760000CBE9 /* SpaceChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC72A20DAE7760000CBE9 /* SpaceChangeObserver.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		51AAC72520DA79CD0000CBE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51AAC6C320DA78D50000CBE9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51AAC70120DA79400000CBE9;
+			remoteInfo = SpaceSwitcher;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		51AAC72720DA79CE0000CBE9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				51AAC72420DA79CD0000CBE9 /* SpaceSwitcher.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		51AAC6CC20DA78D50000CBE9 /* SpaceSwitcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpaceSwitcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		51AAC6CF20DA78D50000CBE9 /* SpaceSwitcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceSwitcher.h; sourceTree = "<group>"; };
-		51AAC6D020DA78D50000CBE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51AAC70220DA79400000CBE9 /* SpaceSwitcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpaceSwitcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceSwitcher.h; sourceTree = "<group>"; };
+		51AAC70520DA79400000CBE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51AAC71320DA79B80000CBE9 /* SpaceSwitcherDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceSwitcherDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		51AAC71520DA79B80000CBE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		51AAC71720DA79B80000CBE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		51AAC71920DA79B90000CBE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		51AAC71C20DA79B90000CBE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		51AAC71E20DA79B90000CBE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51AAC71F20DA79B90000CBE9 /* SpaceSwitcherDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpaceSwitcherDemo.entitlements; sourceTree = "<group>"; };
+		51AAC72820DA7A3A0000CBE9 /* SpaceSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceSwitcher.swift; sourceTree = "<group>"; };
+		51AAC72A20DAE7760000CBE9 /* SpaceChangeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceChangeObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		51AAC6C820DA78D50000CBE9 /* Frameworks */ = {
+		51AAC6FE20DA79400000CBE9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51AAC71020DA79B80000CBE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51AAC72320DA79CD0000CBE9 /* SpaceSwitcher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30,7 +79,8 @@
 		51AAC6C220DA78D50000CBE9 = {
 			isa = PBXGroup;
 			children = (
-				51AAC6CE20DA78D50000CBE9 /* SpaceSwitcher */,
+				51AAC70320DA79400000CBE9 /* SpaceSwitcher */,
+				51AAC71420DA79B80000CBE9 /* SpaceSwitcherDemo */,
 				51AAC6CD20DA78D50000CBE9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -38,42 +88,58 @@
 		51AAC6CD20DA78D50000CBE9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				51AAC6CC20DA78D50000CBE9 /* SpaceSwitcher.framework */,
+				51AAC70220DA79400000CBE9 /* SpaceSwitcher.framework */,
+				51AAC71320DA79B80000CBE9 /* SpaceSwitcherDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		51AAC6CE20DA78D50000CBE9 /* SpaceSwitcher */ = {
+		51AAC70320DA79400000CBE9 /* SpaceSwitcher */ = {
 			isa = PBXGroup;
 			children = (
-				51AAC6CF20DA78D50000CBE9 /* SpaceSwitcher.h */,
-				51AAC6D020DA78D50000CBE9 /* Info.plist */,
+				51AAC72820DA7A3A0000CBE9 /* SpaceSwitcher.swift */,
+				51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */,
+				51AAC70520DA79400000CBE9 /* Info.plist */,
 			);
 			path = SpaceSwitcher;
+			sourceTree = "<group>";
+		};
+		51AAC71420DA79B80000CBE9 /* SpaceSwitcherDemo */ = {
+			isa = PBXGroup;
+			children = (
+				51AAC71520DA79B80000CBE9 /* AppDelegate.swift */,
+				51AAC71720DA79B80000CBE9 /* ViewController.swift */,
+				51AAC72A20DAE7760000CBE9 /* SpaceChangeObserver.swift */,
+				51AAC71920DA79B90000CBE9 /* Assets.xcassets */,
+				51AAC71B20DA79B90000CBE9 /* Main.storyboard */,
+				51AAC71E20DA79B90000CBE9 /* Info.plist */,
+				51AAC71F20DA79B90000CBE9 /* SpaceSwitcherDemo.entitlements */,
+			);
+			path = SpaceSwitcherDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		51AAC6C920DA78D50000CBE9 /* Headers */ = {
+		51AAC6FF20DA79400000CBE9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51AAC6D120DA78D50000CBE9 /* SpaceSwitcher.h in Headers */,
+				51AAC70620DA79400000CBE9 /* SpaceSwitcher.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		51AAC6CB20DA78D50000CBE9 /* SpaceSwitcher */ = {
+		51AAC70120DA79400000CBE9 /* SpaceSwitcher */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 51AAC6D420DA78D50000CBE9 /* Build configuration list for PBXNativeTarget "SpaceSwitcher" */;
+			buildConfigurationList = 51AAC70B20DA79400000CBE9 /* Build configuration list for PBXNativeTarget "SpaceSwitcher" */;
 			buildPhases = (
-				51AAC6C720DA78D50000CBE9 /* Sources */,
-				51AAC6C820DA78D50000CBE9 /* Frameworks */,
-				51AAC6C920DA78D50000CBE9 /* Headers */,
-				51AAC6CA20DA78D50000CBE9 /* Resources */,
+				51AAC6FD20DA79400000CBE9 /* Sources */,
+				51AAC6FE20DA79400000CBE9 /* Frameworks */,
+				51AAC6FF20DA79400000CBE9 /* Headers */,
+				51AAC70020DA79400000CBE9 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -81,8 +147,27 @@
 			);
 			name = SpaceSwitcher;
 			productName = SpaceSwitcher;
-			productReference = 51AAC6CC20DA78D50000CBE9 /* SpaceSwitcher.framework */;
+			productReference = 51AAC70220DA79400000CBE9 /* SpaceSwitcher.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		51AAC71220DA79B80000CBE9 /* SpaceSwitcherDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51AAC72020DA79B90000CBE9 /* Build configuration list for PBXNativeTarget "SpaceSwitcherDemo" */;
+			buildPhases = (
+				51AAC70F20DA79B80000CBE9 /* Sources */,
+				51AAC71020DA79B80000CBE9 /* Frameworks */,
+				51AAC71120DA79B80000CBE9 /* Resources */,
+				51AAC72720DA79CE0000CBE9 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				51AAC72620DA79CD0000CBE9 /* PBXTargetDependency */,
+			);
+			name = SpaceSwitcherDemo;
+			productName = SpaceSwitcherDemo;
+			productReference = 51AAC71320DA79B80000CBE9 /* SpaceSwitcherDemo.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -90,10 +175,15 @@
 		51AAC6C320DA78D50000CBE9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Big Bear Labs";
 				TargetAttributes = {
-					51AAC6CB20DA78D50000CBE9 = {
+					51AAC70120DA79400000CBE9 = {
+						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 0940;
+					};
+					51AAC71220DA79B80000CBE9 = {
 						CreatedOnToolsVersion = 9.4;
 					};
 				};
@@ -104,36 +194,77 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 51AAC6C220DA78D50000CBE9;
 			productRefGroup = 51AAC6CD20DA78D50000CBE9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				51AAC6CB20DA78D50000CBE9 /* SpaceSwitcher */,
+				51AAC70120DA79400000CBE9 /* SpaceSwitcher */,
+				51AAC71220DA79B80000CBE9 /* SpaceSwitcherDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		51AAC6CA20DA78D50000CBE9 /* Resources */ = {
+		51AAC70020DA79400000CBE9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		51AAC71120DA79B80000CBE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51AAC71A20DA79B90000CBE9 /* Assets.xcassets in Resources */,
+				51AAC71D20DA79B90000CBE9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		51AAC6C720DA78D50000CBE9 /* Sources */ = {
+		51AAC6FD20DA79400000CBE9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51AAC72920DA7A3A0000CBE9 /* SpaceSwitcher.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51AAC70F20DA79B80000CBE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51AAC72B20DAE7760000CBE9 /* SpaceChangeObserver.swift in Sources */,
+				51AAC71820DA79B80000CBE9 /* ViewController.swift in Sources */,
+				51AAC71620DA79B80000CBE9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		51AAC72620DA79CD0000CBE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 51AAC70120DA79400000CBE9 /* SpaceSwitcher */;
+			targetProxy = 51AAC72520DA79CD0000CBE9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		51AAC71B20DA79B90000CBE9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				51AAC71C20DA79B90000CBE9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		51AAC6D220DA78D50000CBE9 /* Debug */ = {
@@ -255,9 +386,10 @@
 			};
 			name = Release;
 		};
-		51AAC6D520DA78D50000CBE9 /* Debug */ = {
+		51AAC70C20DA79400000CBE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -277,13 +409,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bigbearlabs.SpaceSwitcher;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
-		51AAC6D620DA78D50000CBE9 /* Release */ = {
+		51AAC70D20DA79400000CBE9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -307,6 +441,46 @@
 			};
 			name = Release;
 		};
+		51AAC72120DA79B90000CBE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SpaceSwitcherDemo/SpaceSwitcherDemo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = XK44TD8U4S;
+				INFOPLIST_FILE = SpaceSwitcherDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bigbearlabs.SpaceSwitcherDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		51AAC72220DA79B90000CBE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SpaceSwitcherDemo/SpaceSwitcherDemo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = XK44TD8U4S;
+				INFOPLIST_FILE = SpaceSwitcherDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bigbearlabs.SpaceSwitcherDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -319,11 +493,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		51AAC6D420DA78D50000CBE9 /* Build configuration list for PBXNativeTarget "SpaceSwitcher" */ = {
+		51AAC70B20DA79400000CBE9 /* Build configuration list for PBXNativeTarget "SpaceSwitcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				51AAC6D520DA78D50000CBE9 /* Debug */,
-				51AAC6D620DA78D50000CBE9 /* Release */,
+				51AAC70C20DA79400000CBE9 /* Debug */,
+				51AAC70D20DA79400000CBE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51AAC72020DA79B90000CBE9 /* Build configuration list for PBXNativeTarget "SpaceSwitcherDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51AAC72120DA79B90000CBE9 /* Debug */,
+				51AAC72220DA79B90000CBE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
