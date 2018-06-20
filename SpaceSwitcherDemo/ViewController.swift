@@ -21,32 +21,33 @@ class ViewController: NSViewController {
   
   @IBAction
   func switchToSpace(_ spaceButton: NSButton) {
-    let windowNumberForSpace = spaceButton.cell!.representedObject as! Int
-    self.spaceSwitcher.activateAnchorWindow(windowNumber: windowNumberForSpace)
+    let spaceToken = spaceButton.cell!.representedObject as! Int
+    self.spaceSwitcher.activateAnchorWindow(forSpaceToken: spaceToken)
   }
 
   
-  func refreshWindowButtons() {
-    self.removeAllWindowButtons()
+  func refreshSwitchToSpaceButtons() {
+    self.removeAllSwitchToSpaceButtons()
     
-    for window in self.spaceSwitcher.anchorWindows {
-      self.addButton(forWindowNumber: window.windowNumber)
+    for token in self.spaceSwitcher.spaceTokens {
+      self.addButton(forSpaceToken: token)
     }
   }
 
+  
   // MARK: - internals
   
-  func addButton(forWindowNumber windowNumber: Int) {
+  func addButton(forSpaceToken spaceToken: Int) {
     let button = NSButton(
-      title: String(windowNumber),
+      title: String(spaceToken),
       target: self,
       action: #selector(switchToSpace(_:)))
-    button.cell!.representedObject = windowNumber
+    button.cell!.representedObject = spaceToken
 
     buttonsStackView.addView(button, in: .top)
   }
   
-  func removeAllWindowButtons() {
+  func removeAllSwitchToSpaceButtons() {
     for button in buttonsStackView.views(in: .top) {
       buttonsStackView.removeView(button)
     }
@@ -69,7 +70,7 @@ extension ViewController: SpaceChangeObserver {
     // ensure we handle the event after SpaceSwitcher.
     DispatchQueue.main.async {
 
-      self.refreshWindowButtons()
+      self.refreshSwitchToSpaceButtons()
     }
     
   }

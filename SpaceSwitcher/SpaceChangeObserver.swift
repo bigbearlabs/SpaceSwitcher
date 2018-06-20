@@ -1,7 +1,7 @@
 import Cocoa
 
 
-protocol SpaceChangeObserver {
+public protocol SpaceChangeObserver {
   
   func observeSpaceChangedNotifications()
   
@@ -11,7 +11,7 @@ protocol SpaceChangeObserver {
 
 extension SpaceChangeObserver where Self: AnyObject {
   
-  func observeSpaceChangedNotifications() {
+  public func observeSpaceChangedNotifications() {
     
     NSWorkspace.shared.notificationCenter.addObserver(
       forName: NSWorkspace.activeSpaceDidChangeNotification,

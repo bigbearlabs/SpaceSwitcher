@@ -1,12 +1,39 @@
 import AppKit
 
 
+
+extension SpaceSwitcher: SpaceChangeObserver {
+  
+  /// place an anchor whenever it is found that no anchor window exists for the current space.
+  public func onSpaceChanged() {
+    
+    ensureNoMultipleAnchorWindowsInSpace()
+    
+    defer {
+      ensureNoMultipleAnchorWindowsInSpace()
+    }
+    
+    if self.anchorWindowForCurrentSpace == nil {
+      
+      // drop an anchor.
+      placeAnchorWindow()
+    }
+    
+  }
+  
+}
+
+
+
 public class SpaceSwitcher: NSObject {
   
   
-  public fileprivate(set)
-  var anchorWindows: [SpaceAnchorWindow] = []
+  public var spaceTokens: [Int] {
+    return anchorWindows.map { $0.windowNumber }
+  }
+
   
+  var anchorWindows: [SpaceAnchorWindow] = []
   
   var anchorWindowForCurrentSpace: SpaceAnchorWindow? {
     
@@ -32,20 +59,6 @@ public class SpaceSwitcher: NSObject {
   }
   
   
-
-  func observeSpaceChangedNotifications() {
-    
-    NSWorkspace.shared.notificationCenter.addObserver(
-      forName: NSWorkspace.activeSpaceDidChangeNotification,
-      object: nil,
-      queue: nil)
-    { [unowned self] notification in
-      
-      self.onSpaceChanged()
-    }
-  }
-  
-
   @discardableResult
   func placeAnchorWindow() -> SpaceAnchorWindow? {
     
@@ -75,39 +88,23 @@ public class SpaceSwitcher: NSObject {
   }
   
   
-  public func activateAnchorWindow(windowNumber: Int) {
+  public func activateAnchorWindow(forSpaceToken: Int) {
     
     guard let anchorWindow =
       self.anchorWindows
-      .filter({ $0.windowNumber == windowNumber })
+      .filter({ $0.windowNumber == forSpaceToken })
       .first
     else {
-      fatalError("could not find anchor window \(windowNumber) to activate; please file a bug.")
+      fatalError("could not find anchor window \(forSpaceToken) to activate; please file a bug.")
     }
     
     guard anchorWindow != anchorWindowForCurrentSpace else {
       // anchor window is already in current space.
       return
     }
-    
+
     anchorWindow.activateToSwitchSpace()
-  }
-  
-  
-  func onSpaceChanged() {
 
-    ensureNoMultipleAnchorWindowsInSpace()
-
-    defer {
-      ensureNoMultipleAnchorWindowsInSpace()
-    }
-    
-    if self.anchorWindowForCurrentSpace == nil {
-      
-      // drop an anchor.
-      placeAnchorWindow()
-    }
-    
   }
   
   
@@ -141,8 +138,7 @@ public class SpaceSwitcher: NSObject {
 }
 
 
-
-public class SpaceAnchorWindow: NSWindow {
+class SpaceAnchorWindow: NSWindow {
   
   convenience init() {
     self.init(
@@ -181,11 +177,11 @@ public class SpaceAnchorWindow: NSWindow {
   // override framewokr methods to work around cocoa assumptions of a transparent window's
   // behaviour.
   
-  override public var canBecomeKey: Bool {
+  override var canBecomeKey: Bool {
     return true
   }
   
-  override public var canBecomeMain: Bool {
+  override var canBecomeMain: Bool {
     return true
   }
 
