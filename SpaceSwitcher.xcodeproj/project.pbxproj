@@ -43,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		512B685C20DB11E1006D54D1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		51AAC70220DA79400000CBE9 /* SpaceSwitcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpaceSwitcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceSwitcher.h; sourceTree = "<group>"; };
 		51AAC70520DA79400000CBE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 		51AAC6C220DA78D50000CBE9 = {
 			isa = PBXGroup;
 			children = (
+				512B685C20DB11E1006D54D1 /* README.md */,
 				51AAC70320DA79400000CBE9 /* SpaceSwitcher */,
 				51AAC71420DA79B80000CBE9 /* SpaceSwitcherDemo */,
 				51AAC6CD20DA78D50000CBE9 /* Products */,
