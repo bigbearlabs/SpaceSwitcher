@@ -18,21 +18,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
-extension AppDelegate: SpaceChangeObserver {
-  
-  func onSpaceChanged() {
-    DispatchQueue.main.async {
-      // switching the space using a SpaceSwitcher entails hiding this app. make the main demo window visible again.
-      if let window = NSApp.windows.filter( {
-        $0 is SpaceAnchorWindow == false
-          && $0.isOnActiveSpace
-      })
-      .first {
-        
-        window.orderFront(self)
-      }
 
-    }
-  }
+
+
+class DemoPanel: NSPanel {
   
+  // forbid the panel to take focus, to rule out accidentally lucky spaces switches when it comes in focus.
+  override var canBecomeMain: Bool {
+    return false
+  }
+  override var canBecomeKey: Bool {
+    return false
+  }
 }
+

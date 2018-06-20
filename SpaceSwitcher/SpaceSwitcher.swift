@@ -154,27 +154,56 @@ class SpaceAnchorWindow: NSWindow {
     // TODO
     
     // exclude anchor window from window behaviour that might get in the way.
-    // NOTE tried adding .transient or .stationary in an attempt to hide the window from Expose.
-    // this resulted in loss of space flinging when window was activated.
-    // we work around the expose-related noise by making the very small and transparent.
-    self.collectionBehavior = [.ignoresCycle]
+    self.collectionBehavior = [.ignoresCycle, .stationary]
 
   }
   
   func activateToSwitchSpace() {
-
-    self.makeKeyAndOrderFront(self)
-
-    // need to hide this app in order not to disturb the system-default
-    // app activation behaviour when switching spaces.
-    NSApp.hide(self)
     
-    // if this app needs to activate after the switch, implement by calling #orderFront
-    // on the appropriate window(s) in a space change notification handler.
+    // the app be active in order for window to fling the space.
+    NSApp.activate(ignoringOtherApps: true)
+    
+    // grab some state prior to the voodoo magic, in order to restore them afterwards.
+    let (
+      windowsVisiblePriorToSwitch,
+      collectionBehaviour
+    ) = (
+      NSApp.windows.filter {
+        $0 is SpaceAnchorWindow == false
+          && $0.isVisible
+      },
+      self.collectionBehavior
+    )
+
+    // the window must be set to the expose-recognised collection behaviour in order to fling the space.
+    self.collectionBehavior = [.ignoresCycle]
+
+    DispatchQueue.main.async {
+      
+      self.makeKeyAndOrderFront(self)
+
+      // need to hide this app in order not to disturb the system-default
+      // app activation behaviour when switching spaces.
+      NSApp.hide(self)
+      
+      // restore window states prior to the app activation and hiding.
+      // a delay is needed before which spaces transition should complete in order for this approach to work.
+      // this will probably break (in a minor way) on slower systems or when the window server is sluggish.
+      let smallDelay = 0.5
+      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + smallDelay) {
+        
+        for window in windowsVisiblePriorToSwitch {
+          window.setIsVisible(true)
+        }
+        
+        self.collectionBehavior = collectionBehaviour
+      }
+    
+    }
   }
   
   
-  // override framewokr methods to work around cocoa assumptions of a transparent window's
+  // override framework methods to work around cocoa assumptions of a transparent window's
   // behaviour.
   
   override var canBecomeKey: Bool {
