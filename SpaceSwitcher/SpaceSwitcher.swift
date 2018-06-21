@@ -31,6 +31,10 @@ public class SpaceSwitcher: NSObject {
   public var spaceTokens: [Int] {
     return anchorWindows.map { $0.windowNumber }
   }
+  
+  public var spaceTokenForCurrentSpace: Int? {
+    return anchorWindowForCurrentSpace?.windowNumber
+  }
 
   
   var anchorWindows: [SpaceAnchorWindow] = []

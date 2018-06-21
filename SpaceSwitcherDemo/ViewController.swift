@@ -29,17 +29,23 @@ class ViewController: NSViewController {
   func refreshSwitchToSpaceButtons() {
     self.removeAllSwitchToSpaceButtons()
     
+    let currentSpaceToken = self.spaceSwitcher.spaceTokenForCurrentSpace
     for token in self.spaceSwitcher.spaceTokens {
-      self.addButton(forSpaceToken: token)
+      let isCurrent = (token == currentSpaceToken)
+      self.addButton(forSpaceToken: token, markAsCurrent: isCurrent)
     }
   }
 
   
   // MARK: - internals
   
-  func addButton(forSpaceToken spaceToken: Int) {
+  func addButton(forSpaceToken spaceToken: Int, markAsCurrent: Bool = false) {
+    var title = String(spaceToken)
+    if markAsCurrent {
+      title = "\(title) *"
+    }
     let button = NSButton(
-      title: String(spaceToken),
+      title: title,
       target: self,
       action: #selector(switchToSpace(_:)))
     button.cell!.representedObject = spaceToken
