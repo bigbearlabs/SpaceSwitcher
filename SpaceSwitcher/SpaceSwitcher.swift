@@ -9,15 +9,18 @@ extension SpaceSwitcher: SpaceChangeObserver {
     
     ensureNoMultipleAnchorWindowsInSpace()
     
-    defer {
-      ensureNoMultipleAnchorWindowsInSpace()
-    }
-    
     if self.anchorWindowForCurrentSpace == nil {
       
       // drop an anchor.
       placeAnchorWindow()
     }
+
+    ensureNoMultipleAnchorWindowsInSpace()
+
+    if let currentSpaceToken = self.spaceTokenForCurrentSpace {
+      self.changeHandler(currentSpaceToken)
+    }
+    
     
   }
   
@@ -40,7 +43,11 @@ public class SpaceSwitcher: NSObject {
   var anchorWindows: [SpaceAnchorWindow] = []
   
 
-  override public init() {
+  let changeHandler: (Int?) -> ()
+  
+  
+  public init(changeHandler: @escaping (Int?) -> () = {_ in }) {
+    self.changeHandler = changeHandler
     super.init()
     
     observeSpaceChangedNotifications()
