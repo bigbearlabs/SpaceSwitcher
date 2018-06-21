@@ -163,8 +163,8 @@ class SpaceAnchorWindow: NSWindow {
     // ensure windows are released when no longer referenced.
     self.isReleasedWhenClosed = true
 
-    // make anchor windows transparent.
-    // TODO
+    // make anchor window transparent.
+    self.transparent = true
     
     // exclude anchor window from window behaviour that might get in the way.
     self.collectionBehavior = [.ignoresCycle, .stationary]
