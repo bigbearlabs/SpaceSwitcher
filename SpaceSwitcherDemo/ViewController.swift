@@ -22,6 +22,7 @@ class ViewController: NSViewController {
   @IBAction
   func switchToSpace(_ spaceButton: NSButton) {
     let spaceToken = spaceButton.cell!.representedObject as! Int
+    
     self.spaceSwitcher.activateAnchorWindow(forSpaceToken: spaceToken)
   }
 
@@ -54,7 +55,7 @@ class ViewController: NSViewController {
   }
   
   func removeAllSwitchToSpaceButtons() {
-    for button in buttonsStackView.views(in: .top) {
+    for button in buttonsStackView.views(in: .top) where button is NSButton {
       buttonsStackView.removeView(button)
     }
   }
