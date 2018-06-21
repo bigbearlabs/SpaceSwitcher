@@ -22,6 +22,10 @@ extension SpaceSwitcher: SpaceChangeObserver {
     }
     
     
+    // TODO guard against possible misplacement of the anchor
+    // window in another space, if the user has very
+    // quickly changed spaces.
+    // probably best done in a window delegate method.
   }
   
 }

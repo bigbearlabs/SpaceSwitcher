@@ -713,6 +713,24 @@
                             <stackView orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7yF-CT-EoF">
                                 <rect key="frame" x="0.0" y="0.0" width="362" height="270"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <middleViews>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5hb-bP-bLg">
+                                        <rect key="frame" x="-6" y="118" width="155" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Switch To Previous" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eeN-71-fHT">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="switchToPreviousSpace:" target="rPt-NT-nkU" id="qg0-YB-fct"/>
+                                        </connections>
+                                    </button>
+                                </middleViews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
                             </stackView>
                         </subviews>
                     </view>
@@ -723,6 +741,23 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="16" y="655"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="umg-rI-dUY">
+            <objects>
+                <windowController id="rva-tw-CO2" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="zDt-Jx-YL6">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="294" y="362" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+                        <connections>
+                            <outlet property="delegate" destination="rva-tw-CO2" id="xQn-Q9-rsk"/>
+                        </connections>
+                    </window>
+                </windowController>
+                <customObject id="Ec8-yg-cWg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
 </document>

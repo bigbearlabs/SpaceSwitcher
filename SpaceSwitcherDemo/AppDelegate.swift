@@ -14,9 +14,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // SpaceSwitcher will obtain a space token every time the app discovers a new space.
     // the info is used by ViewController to add a button that will switch to each discovered
     // space.
-    spaceSwitcher = SpaceSwitcher()
+    spaceSwitcher = SpaceSwitcher(changeHandler: { currentSpaceToken in
+      if let currentSpaceToken = currentSpaceToken,
+        currentSpaceToken != self.currentSpaceToken {
+        self.previousSpaceToken = self.currentSpaceToken
+        self.currentSpaceToken = currentSpaceToken
+      }
+    })
   }
 
+  
+  // MARK: - 'switch to previous' app
+    
+  var currentSpaceToken: Int?
+  var previousSpaceToken: Int?
 }
 
 
@@ -33,3 +44,14 @@ class DemoPanel: NSPanel {
   }
 }
 
+
+
+extension AppDelegate {
+  
+  @IBAction
+  func switchToPreviousSpace(_ sender: Any) {
+    if let spaceToken = self.previousSpaceToken {
+      spaceSwitcher?.activateAnchorWindow(forSpaceToken: spaceToken)
+    }
+  }
+}
