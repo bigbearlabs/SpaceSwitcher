@@ -2,6 +2,7 @@ import Cocoa
 import SpaceSwitcher
 
 
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -20,10 +21,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
 
-
 class DemoPanel: NSPanel {
   
   // forbid the panel to take focus, to rule out accidentally lucky spaces switches when it comes in focus.
+  
   override var canBecomeMain: Bool {
     return false
   }

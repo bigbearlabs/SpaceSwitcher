@@ -35,21 +35,7 @@ public class SpaceSwitcher: NSObject {
   
   var anchorWindows: [SpaceAnchorWindow] = []
   
-  var anchorWindowForCurrentSpace: SpaceAnchorWindow? {
-    
-    ensureNoMultipleAnchorWindowsInSpace()
-    
-    let anchorWindowsOnSpace = anchorWindows.filter {
-        $0.isOnActiveSpace
-    }
-    
-    assert(anchorWindowsOnSpace.count <= 1,
-           "multiple anchor windows found in space; please file a bug.")
-    
-    return anchorWindowsOnSpace.first
-  }
-  
-  
+
   override public init() {
     super.init()
     
@@ -134,6 +120,22 @@ public class SpaceSwitcher: NSObject {
     }
     
   }
+  
+  
+  var anchorWindowForCurrentSpace: SpaceAnchorWindow? {
+    
+    ensureNoMultipleAnchorWindowsInSpace()
+    
+    let anchorWindowsOnSpace = anchorWindows.filter {
+      $0.isOnActiveSpace
+    }
+    
+    assert(anchorWindowsOnSpace.count <= 1,
+           "multiple anchor windows found in space; please file a bug.")
+    
+    return anchorWindowsOnSpace.first
+  }
+  
   
 }
 
