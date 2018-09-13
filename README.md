@@ -34,7 +34,7 @@ to control the Spaces of a desktop session, or a standard GUI login.
 
 Given no help from all the system's public frameworks, SpaceSwitcher makes use of how the system switches
 to the Space of a window which has been brought to focus. 
-Every time the user makes a new Space current, SpaceSwitcher will create a transparent windowin that space.
+Every time the user makes a new Space current, SpaceSwitcher will create a transparent window in that space.
 This window provides a mean to uniquely identify a discovered Space and switch to it by activating the window.
 
 A bunch of 'tying up loose ends' goes around this core approach to make it behave seamlessly, 
