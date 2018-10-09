@@ -24,8 +24,8 @@ the Mac App Store.
 
 ## Demo
 
-build and run the SpaceSwitcherDemo app to test out Spaces functionality.
-Walk through the app code to understand how to use the framework.
+- Build and run the SpaceSwitcherDemo app to test out Spaces functionality.
+- Walk through the app code to understand how to use the framework.
 
 
 ## Notes
@@ -36,7 +36,7 @@ for Spaces / Mission Control.
 Given no help from the system's public frameworks, SpaceSwitcher makes use of how the system switches
 to the Space of a window which has been brought to focus. 
 Every time the user makes a new Space current, SpaceSwitcher will create a transparent window in that space.
-This window provides a means to uniquely identify a discovered Space, and to switch to it by activating the window.
+This window is then used as a 'handle' to the space it belongs to.
 
 A bunch of 'tying up loose ends' goes around this core approach to make it behave seamlessly, 
 making it sensible to reuse the effort.
