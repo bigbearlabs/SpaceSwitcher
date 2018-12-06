@@ -16,7 +16,12 @@
 		51AAC71D20DA79B90000CBE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51AAC71B20DA79B90000CBE9 /* Main.storyboard */; };
 		51AAC72320DA79CD0000CBE9 /* SpaceSwitcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51AAC70220DA79400000CBE9 /* SpaceSwitcher.framework */; };
 		51AAC72420DA79CD0000CBE9 /* SpaceSwitcher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 51AAC70220DA79400000CBE9 /* SpaceSwitcher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		51AAC72920DA7A3A0000CBE9 /* SpaceSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC72820DA7A3A0000CBE9 /* SpaceSwitcher.swift */; };
+		51AAC72920DA7A3A0000CBE9 /* AnchorWindowBasedSpaceSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC72820DA7A3A0000CBE9 /* AnchorWindowBasedSpaceSwitcher.swift */; };
+		51E9D2FE21B9888900231FC8 /* BBLSpaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51E9D2FD21B9887E00231FC8 /* BBLSpaces.framework */; };
+		51E9D2FF21B9888900231FC8 /* BBLSpaces.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 51E9D2FD21B9887E00231FC8 /* BBLSpaces.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		51E9D30321B9889300231FC8 /* BBLSpaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51E9D2FD21B9887E00231FC8 /* BBLSpaces.framework */; };
+		51E9D30521B9AE0500231FC8 /* CGPrivateAPIBasedSpaceSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E9D30421B9AE0500231FC8 /* CGPrivateAPIBasedSpaceSwitcher.swift */; };
+		51E9D30721B9AE2A00231FC8 /* SpaceSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E9D30621B9AE2A00231FC8 /* SpaceSwitcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +32,27 @@
 			remoteGlobalIDString = 51AAC70120DA79400000CBE9;
 			remoteInfo = SpaceSwitcher;
 		};
+		51E9D2FA21B9887E00231FC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51E9D2F521B9887E00231FC8 /* SpacesPrivateAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 51304B181D103AFD00A0E3DA;
+			remoteInfo = SpacesPrivateAPI;
+		};
+		51E9D2FC21B9887E00231FC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51E9D2F521B9887E00231FC8 /* SpacesPrivateAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 513BA78E1DC24474000133A0;
+			remoteInfo = BBLSpaces;
+		};
+		51E9D30021B9888900231FC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51E9D2F521B9887E00231FC8 /* SpacesPrivateAPI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 513BA78D1DC24474000133A0;
+			remoteInfo = BBLSpaces;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +62,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				51E9D2FF21B9888900231FC8 /* BBLSpaces.framework in Embed Frameworks */,
 				51AAC72420DA79CD0000CBE9 /* SpaceSwitcher.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -56,8 +83,11 @@
 		51AAC71C20DA79B90000CBE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		51AAC71E20DA79B90000CBE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51AAC71F20DA79B90000CBE9 /* SpaceSwitcherDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpaceSwitcherDemo.entitlements; sourceTree = "<group>"; };
-		51AAC72820DA7A3A0000CBE9 /* SpaceSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceSwitcher.swift; sourceTree = "<group>"; };
+		51AAC72820DA7A3A0000CBE9 /* AnchorWindowBasedSpaceSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorWindowBasedSpaceSwitcher.swift; sourceTree = "<group>"; };
 		51AAC72A20DAE7760000CBE9 /* SpaceChangeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceChangeObserver.swift; sourceTree = "<group>"; };
+		51E9D2F521B9887E00231FC8 /* SpacesPrivateAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SpacesPrivateAPI.xcodeproj; path = SpacesPrivateAPI/SpacesPrivateAPI.xcodeproj; sourceTree = "<group>"; };
+		51E9D30421B9AE0500231FC8 /* CGPrivateAPIBasedSpaceSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPrivateAPIBasedSpaceSwitcher.swift; sourceTree = "<group>"; };
+		51E9D30621B9AE2A00231FC8 /* SpaceSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceSwitcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51E9D30321B9889300231FC8 /* BBLSpaces.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51E9D2FE21B9888900231FC8 /* BBLSpaces.framework in Frameworks */,
 				51AAC72320DA79CD0000CBE9 /* SpaceSwitcher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,7 +117,9 @@
 				512B685C20DB11E1006D54D1 /* README.md */,
 				51AAC70320DA79400000CBE9 /* SpaceSwitcher */,
 				51AAC71420DA79B80000CBE9 /* SpaceSwitcherDemo */,
+				51E9D2F521B9887E00231FC8 /* SpacesPrivateAPI.xcodeproj */,
 				51AAC6CD20DA78D50000CBE9 /* Products */,
+				51E9D30221B9889300231FC8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,8 +135,10 @@
 		51AAC70320DA79400000CBE9 /* SpaceSwitcher */ = {
 			isa = PBXGroup;
 			children = (
-				51AAC72820DA7A3A0000CBE9 /* SpaceSwitcher.swift */,
+				51E9D30621B9AE2A00231FC8 /* SpaceSwitcher.swift */,
 				51AAC72A20DAE7760000CBE9 /* SpaceChangeObserver.swift */,
+				51AAC72820DA7A3A0000CBE9 /* AnchorWindowBasedSpaceSwitcher.swift */,
+				51E9D30421B9AE0500231FC8 /* CGPrivateAPIBasedSpaceSwitcher.swift */,
 				51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */,
 				51AAC70520DA79400000CBE9 /* Info.plist */,
 				5110DB7520DBB5A400D3A409 /* Appkit-categories.swift */,
@@ -121,6 +157,22 @@
 				51AAC71F20DA79B90000CBE9 /* SpaceSwitcherDemo.entitlements */,
 			);
 			path = SpaceSwitcherDemo;
+			sourceTree = "<group>";
+		};
+		51E9D2F621B9887E00231FC8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				51E9D2FB21B9887E00231FC8 /* SpacesPrivateAPI.app */,
+				51E9D2FD21B9887E00231FC8 /* BBLSpaces.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		51E9D30221B9889300231FC8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +220,7 @@
 			);
 			dependencies = (
 				51AAC72620DA79CD0000CBE9 /* PBXTargetDependency */,
+				51E9D30121B9888900231FC8 /* PBXTargetDependency */,
 			);
 			name = SpaceSwitcherDemo;
 			productName = SpaceSwitcherDemo;
@@ -205,6 +258,12 @@
 			mainGroup = 51AAC6C220DA78D50000CBE9;
 			productRefGroup = 51AAC6CD20DA78D50000CBE9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 51E9D2F621B9887E00231FC8 /* Products */;
+					ProjectRef = 51E9D2F521B9887E00231FC8 /* SpacesPrivateAPI.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				51AAC70120DA79400000CBE9 /* SpaceSwitcher */,
@@ -212,6 +271,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		51E9D2FB21B9887E00231FC8 /* SpacesPrivateAPI.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SpacesPrivateAPI.app;
+			remoteRef = 51E9D2FA21B9887E00231FC8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		51E9D2FD21B9887E00231FC8 /* BBLSpaces.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BBLSpaces.framework;
+			remoteRef = 51E9D2FC21B9887E00231FC8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		51AAC70020DA79400000CBE9 /* Resources */ = {
@@ -239,7 +315,9 @@
 			files = (
 				512B685B20DB0970006D54D1 /* SpaceChangeObserver.swift in Sources */,
 				5110DB7620DBB5A400D3A409 /* Appkit-categories.swift in Sources */,
-				51AAC72920DA7A3A0000CBE9 /* SpaceSwitcher.swift in Sources */,
+				51E9D30721B9AE2A00231FC8 /* SpaceSwitcher.swift in Sources */,
+				51E9D30521B9AE0500231FC8 /* CGPrivateAPIBasedSpaceSwitcher.swift in Sources */,
+				51AAC72920DA7A3A0000CBE9 /* AnchorWindowBasedSpaceSwitcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +337,11 @@
 			isa = PBXTargetDependency;
 			target = 51AAC70120DA79400000CBE9 /* SpaceSwitcher */;
 			targetProxy = 51AAC72520DA79CD0000CBE9 /* PBXContainerItemProxy */;
+		};
+		51E9D30121B9888900231FC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BBLSpaces;
+			targetProxy = 51E9D30021B9888900231FC8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
