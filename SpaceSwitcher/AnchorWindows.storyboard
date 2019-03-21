@@ -10,10 +10,10 @@
         <scene sceneID="nOY-76-dZc">
             <objects>
                 <customObject id="eig-5K-CfP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <windowController storyboardIdentifier="FullScreenAnchorWindowController" id="CKm-Sm-T9k" userLabel="Full Screen Anchor Window Controller" sceneMemberID="viewController">
-                    <window key="window" title="FullScreenAnchorWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="1Qb-Zm-G89" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" nonactivatingPanel="YES"/>
-                        <windowCollectionBehavior key="collectionBehavior" transient="YES" ignoresCycle="YES" fullScreenAuxiliary="YES"/>
+                <windowController storyboardIdentifier="AnchorWindowController" id="CKm-Sm-T9k" userLabel="Full Screen Anchor Window Controller" sceneMemberID="viewController">
+                    <window key="window" title="FullScreenAnchorWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="1Qb-Zm-G89" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES" nonactivatingPanel="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" stationary="YES" ignoresCycle="YES" fullScreenAuxiliary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="362" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
@@ -28,25 +28,6 @@
             </objects>
             <point key="canvasLocation" x="175" y="-246"/>
         </scene>
-        <!--Standard Anchor Window Controller-->
-        <scene sceneID="7Qr-We-hAZ">
-            <objects>
-                <windowController storyboardIdentifier="AnchorWindowController" id="4DH-Fb-yvu" userLabel="Standard Anchor Window Controller" customClass="AppActivatingWindowController" customModule="SpaceSwitcher" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="AnchorWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="wcP-QO-Rue">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowCollectionBehavior key="collectionBehavior" transient="YES" ignoresCycle="YES" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="294" y="362" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
-                        <connections>
-                            <outlet property="delegate" destination="4DH-Fb-yvu" id="Ciu-JO-Iaj"/>
-                        </connections>
-                    </window>
-                </windowController>
-                <customObject id="9fD-cr-ez0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="175" y="150"/>
-        </scene>
         <!--Full Screen Anchor View Controller-->
         <scene sceneID="MHn-Ah-FV8">
             <objects>
@@ -55,7 +36,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VbG-cG-x3k">
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VbG-cG-x3k">
                                 <rect key="frame" x="192" y="162" width="68" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Hide" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D6L-RO-1Bz">
