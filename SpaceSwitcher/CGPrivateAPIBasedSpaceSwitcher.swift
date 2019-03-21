@@ -16,6 +16,7 @@ public class CGPrivateAPIBasedSpaceSwitcher: SpaceSwitcher {
     return spacesBroker.probeResult()?.spaceIds() as? [SpaceToken] ?? []
   }
   
+  
   public func switchToSpace(token: SpaceToken) {
     fatalError("TODO implement using CGSManagedDisplaySetCurrentSpace")
   }

@@ -78,8 +78,22 @@ extension ViewController: SpaceChangeObserver {
     DispatchQueue.main.async {
 
       self.refreshSwitchToSpaceButtons()
+      
+      for window in NSApp.windows {
+        window.setIsVisible(true)
+      }
     }
     
+  }
+  
+}
+
+
+class FullScreenAnchorViewController: NSViewController {
+  
+
+  @IBAction func action_hideWindow(_ sender: Any) {
+    self.view.window?.orderOut(self)
   }
   
 }

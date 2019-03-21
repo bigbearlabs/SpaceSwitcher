@@ -5,7 +5,7 @@ import Cocoa
 extension NSWindow {
   
   @IBInspectable
-  public var transparent: Bool {
+  var transparent: Bool {
     get {
       return
         !self.isOpaque

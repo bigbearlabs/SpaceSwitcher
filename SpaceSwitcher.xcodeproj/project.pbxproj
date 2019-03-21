@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5110DB7620DBB5A400D3A409 /* Appkit-categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110DB7520DBB5A400D3A409 /* Appkit-categories.swift */; };
 		512B685B20DB0970006D54D1 /* SpaceChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC72A20DAE7760000CBE9 /* SpaceChangeObserver.swift */; };
+		5140217B22427F59006157A7 /* BBLSpaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5140217A22427F59006157A7 /* BBLSpaces.framework */; };
+		51402199224293A5006157A7 /* AnchorWindows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51402198224293A5006157A7 /* AnchorWindows.storyboard */; };
 		51AAC70620DA79400000CBE9 /* SpaceSwitcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		51AAC71620DA79B80000CBE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC71520DA79B80000CBE9 /* AppDelegate.swift */; };
 		51AAC71820DA79B80000CBE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC71720DA79B80000CBE9 /* ViewController.swift */; };
@@ -73,6 +75,8 @@
 /* Begin PBXFileReference section */
 		5110DB7520DBB5A400D3A409 /* Appkit-categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Appkit-categories.swift"; sourceTree = "<group>"; };
 		512B685C20DB11E1006D54D1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5140217A22427F59006157A7 /* BBLSpaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBLSpaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		51402198224293A5006157A7 /* AnchorWindows.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AnchorWindows.storyboard; sourceTree = "<group>"; };
 		51AAC70220DA79400000CBE9 /* SpaceSwitcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpaceSwitcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceSwitcher.h; sourceTree = "<group>"; };
 		51AAC70520DA79400000CBE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5140217B22427F59006157A7 /* BBLSpaces.framework in Frameworks */,
 				51E9D30321B9889300231FC8 /* BBLSpaces.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +147,7 @@
 				51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */,
 				51AAC70520DA79400000CBE9 /* Info.plist */,
 				5110DB7520DBB5A400D3A409 /* Appkit-categories.swift */,
+				51402198224293A5006157A7 /* AnchorWindows.storyboard */,
 			);
 			path = SpaceSwitcher;
 			sourceTree = "<group>";
@@ -171,6 +177,7 @@
 		51E9D30221B9889300231FC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5140217A22427F59006157A7 /* BBLSpaces.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -294,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51402199224293A5006157A7 /* AnchorWindows.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

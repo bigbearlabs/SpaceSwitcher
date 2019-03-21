@@ -11,3 +11,12 @@ public protocol SpaceSwitcher {
   
   func switchToSpace(token: SpaceToken)
 }
+
+
+class AppActivatingWindowController: NSWindowController, NSWindowDelegate {
+  
+  func windowDidBecomeKey(_ notification: Notification) {
+//    NSApp.activate(ignoringOtherApps: true)
+  }
+  
+}
