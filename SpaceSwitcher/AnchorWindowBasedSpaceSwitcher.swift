@@ -108,7 +108,7 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
   }
   
   public var spaceTokenForCurrentSpace: SpaceToken? {
-    return anchorWindowControllersBySpaceToken.first { $0.value ===  self.anchorWindowForCurrentSpace }?.key
+    return anchorWindowControllersBySpaceToken.first { $0.value.window ===  self.anchorWindowForCurrentSpace }?.key
   }
   
   public func spaceTokenForCurrentSpace(currentAnchorController: NSWindowController) -> SpaceToken {
