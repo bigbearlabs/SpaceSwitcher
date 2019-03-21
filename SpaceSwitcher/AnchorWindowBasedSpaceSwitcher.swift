@@ -1,8 +1,9 @@
 import AppKit
 
 
+
 protocol AnchorWindowOrchestrator: AnyObject {
-  var anchorWindowControllers: [NSWindowController] { get set }
+  var anchorWindowControllersBySpaceToken: [SpaceToken : NSWindowController] { get set }
   
   func anchorWindowController(spaceToken: SpaceToken) -> NSWindowController?
 }
@@ -13,7 +14,7 @@ extension AnchorWindowOrchestrator {
     
     //    ensureNoMultipleAnchorWindowsInSpace() {
     
-    let anchorWindowsOnSpace = self.anchorWindowControllers.map { $0.window! }.filter {
+    let anchorWindowsOnSpace = self.anchorWindowControllersBySpaceToken.map { $0.value.window! }.filter {
       $0.isVisible && $0.isOnActiveSpace
     }
     //
@@ -42,8 +43,7 @@ extension AnchorWindowOrchestrator {
   
   
   func ensureNoMultipleAnchorWindowsInSpace(completionHandler: @escaping () -> Void) {
-    //    DispatchQueue.main.async {
-    let anchorWindows = self.anchorWindowControllers.map { $0.window!}
+    let anchorWindows = self.anchorWindowControllersBySpaceToken.map { $0.value.window!}
     
     // when > 1 anchor window found in space,
     let anchorWindowsInSpace = anchorWindows.filter {
@@ -55,9 +55,9 @@ extension AnchorWindowOrchestrator {
       // remove all but the first one.
       let obsoleteAnchorWindows = anchorWindowsInSpace.dropFirst()
       
-      self.anchorWindowControllers = self.anchorWindowControllers.filter {
-        $0.window != nil
-          && !obsoleteAnchorWindows.contains($0.window!)
+      self.anchorWindowControllersBySpaceToken = self.anchorWindowControllersBySpaceToken.filter {
+        $0.value.window != nil
+          && !obsoleteAnchorWindows.contains($0.value.window!)
       }
       
       for window in obsoleteAnchorWindows {
@@ -68,59 +68,73 @@ extension AnchorWindowOrchestrator {
     }
     
     completionHandler()
-    //    }
   }
   
-
 }
+
+
+// MARK: -
+
 public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWindowOrchestrator {
   
+  var anchorWindowControllersBySpaceToken: [SpaceToken : NSWindowController] = [:]
   
-  public var spaceTokens: [SpaceToken] {
-    return self.anchorWindowControllers.map { $0.window!.windowNumber }
-  }
-  
-  public var spaceTokenForCurrentSpace: SpaceToken? {
-    return anchorWindowForCurrentSpace?.windowNumber
-  }
-
-  
-  var anchorWindowControllers: [NSWindowController] = []
-  
-
   let changeHandler: (SpaceToken?) -> ()
-  
+
+
+  var spacesPrivateApiTool: SpacesPrivateApiTool?
+    = SpacesPrivateApiTool()
   
   public init(changeHandler: @escaping (SpaceToken?) -> () = {_ in }) {
     self.changeHandler = changeHandler
+    
     super.init()
+    
+    if let placement = self.spacesPrivateApiTool?.placeAnchorWindowsInAllSpaces() {
+      self.anchorWindowControllersBySpaceToken = placement
+    }
     
     observeSpaceChangedNotifications()
     
     onSpaceChanged()
   }
   
-  func anchorWindowController(spaceToken: SpaceToken) -> NSWindowController? {
-    let o = self.anchorWindowControllers
-      .first(where: { $0.window!.windowNumber == spaceToken })
-    return o
+  
+  // MARK: -
+  
+  public var spaceTokens: [SpaceToken] {
+    return self.spacesPrivateApiTool?.spaceIds
+      ?? Array(self.anchorWindowControllersBySpaceToken.keys)
   }
   
+  public var spaceTokenForCurrentSpace: SpaceToken? {
+    return anchorWindowControllersBySpaceToken.first { $0.value ===  self.anchorWindowForCurrentSpace }?.key
+  }
   
+  public func spaceTokenForCurrentSpace(currentAnchorController: NSWindowController) -> SpaceToken {
+    // if private api available, return space id.
+    // all anchors must have been placed prior.
+    return spacesPrivateApiTool?.currentSpaceId
+      ?? currentAnchorController.window!.windowNumber
+  }
+  
+  func anchorWindowController(spaceToken: SpaceToken) -> NSWindowController? {
+    return self.anchorWindowControllersBySpaceToken[spaceToken]
+  }
+  
+
   // MARK: -
   
   public func switchToSpace(token: SpaceToken) {
     self.activateAnchorWindow(forSpaceToken: token)
     
-    ensureNoMultipleAnchorWindowsInSpace {
-      
-    }
+    ensureNoMultipleAnchorWindowsInSpace {}
   }
+  
   
   // MARK: -
   
-  
-  func placeAnchorWindow() {
+  func placeAnchorWindowInCurrentSpace() {
     
     defer {
       ensureNoMultipleAnchorWindowsInSpace() {}
@@ -145,15 +159,18 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
       
       // just give up placing an anchor window.
 
-//      return nil
       return
     }
 
-    self.anchorWindowControllers.append(anchorWindowController)
+    let spaceToken = self.spaceTokenForCurrentSpace(currentAnchorController: anchorWindowController)
+    self.anchorWindowControllersBySpaceToken[spaceToken] = anchorWindowController
+    
   }
   
+  
+  // MARK: -
+  
 }
-
 
 extension AnchorWindowBasedSpaceSwitcher: SpaceChangeObserver {
   
@@ -166,7 +183,7 @@ extension AnchorWindowBasedSpaceSwitcher: SpaceChangeObserver {
       if self.anchorWindowForCurrentSpace == nil {
         
         // drop an anchor.
-        self.placeAnchorWindow()
+        self.placeAnchorWindowInCurrentSpace()
       }
     
       self.ensureNoMultipleAnchorWindowsInSpace() {
@@ -181,7 +198,6 @@ extension AnchorWindowBasedSpaceSwitcher: SpaceChangeObserver {
 }
 
 
-
 extension NSWindow {
   
   // NOTE a case where this falls apart:
@@ -192,15 +208,7 @@ extension NSWindow {
     NSApp.activate(ignoringOtherApps: true)
 
     // grab some state prior to the voodoo magic, in order to restore them afterwards.
-    let (
-      windowsVisiblePriorToSwitch,
-      collectionBehaviour
-      ) = (
-        NSApp.windows.filter {
-          $0.isVisible
-        },
-        self.collectionBehavior
-    )
+    let collectionBehaviour = self.collectionBehavior
 
     // the window must be set to a specific collection behaviour in order to fling the space.
     self.collectionBehavior = [.ignoresCycle]
@@ -209,36 +217,9 @@ extension NSWindow {
 
     DispatchQueue.main.async {
       self.collectionBehavior = collectionBehaviour
-
-      // need to hide this app in order not to disturb the system-default
-      // app activation behaviour when switching spaces.
-      
-  //    NSApp.hide(self)
-      
-        // temp disable.
-  //    NSApp.deactivate()
-
-      // a delay is needed so spaces transition completes before the following logic.
-      // this will probably break (in a minor way) on slower systems or when the window server is sluggish.
-      let smallDelay = 0.5
-      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + smallDelay) {
-
-
-        // restore window states prior to the app activation and hiding.
-
-  //        for window in windowsVisiblePriorToSwitch {
-  //          window.setIsVisible(true)
-  //        }
-
-
-        // TODO unhide the app.
-  //      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
-  //        NSApp.unhide(self)
-  //      }
-        
-  //      NSApp.deactivate()
-      }
     }
   }
   
 }
+
+

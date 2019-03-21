@@ -15,9 +15,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // the info is used by ViewController to add a button that will switch to each discovered
     // space.
     
-//    spaceSwitcher = AnchorWindowBasedSpaceSwitcher()
+    spaceSwitcher = AnchorWindowBasedSpaceSwitcher()
     
-    spaceSwitcher = CGPrivateAPIBasedSpaceSwitcher()
+//    spaceSwitcher = CGPrivateAPIBasedSpaceSwitcher()
   }
 
 }

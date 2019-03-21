@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5110DB7620DBB5A400D3A409 /* Appkit-categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110DB7520DBB5A400D3A409 /* Appkit-categories.swift */; };
+		5123E5402243BDA90079AA60 /* AnchorWindowVendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5123E53F2243BDA90079AA60 /* AnchorWindowVendor.swift */; };
 		512B685B20DB0970006D54D1 /* SpaceChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC72A20DAE7760000CBE9 /* SpaceChangeObserver.swift */; };
 		5140217B22427F59006157A7 /* BBLSpaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5140217A22427F59006157A7 /* BBLSpaces.framework */; };
 		51402199224293A5006157A7 /* AnchorWindows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51402198224293A5006157A7 /* AnchorWindows.storyboard */; };
@@ -22,7 +23,7 @@
 		51E9D2FE21B9888900231FC8 /* BBLSpaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51E9D2FD21B9887E00231FC8 /* BBLSpaces.framework */; };
 		51E9D2FF21B9888900231FC8 /* BBLSpaces.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 51E9D2FD21B9887E00231FC8 /* BBLSpaces.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		51E9D30321B9889300231FC8 /* BBLSpaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51E9D2FD21B9887E00231FC8 /* BBLSpaces.framework */; };
-		51E9D30521B9AE0500231FC8 /* CGPrivateAPIBasedSpaceSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E9D30421B9AE0500231FC8 /* CGPrivateAPIBasedSpaceSwitcher.swift */; };
+		51E9D30521B9AE0500231FC8 /* SpacesPrivateApiTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E9D30421B9AE0500231FC8 /* SpacesPrivateApiTool.swift */; };
 		51E9D30721B9AE2A00231FC8 /* SpaceSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E9D30621B9AE2A00231FC8 /* SpaceSwitcher.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 
 /* Begin PBXFileReference section */
 		5110DB7520DBB5A400D3A409 /* Appkit-categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Appkit-categories.swift"; sourceTree = "<group>"; };
+		5123E53F2243BDA90079AA60 /* AnchorWindowVendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorWindowVendor.swift; sourceTree = "<group>"; };
 		512B685C20DB11E1006D54D1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5140217A22427F59006157A7 /* BBLSpaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BBLSpaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51402198224293A5006157A7 /* AnchorWindows.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AnchorWindows.storyboard; sourceTree = "<group>"; };
@@ -90,7 +92,7 @@
 		51AAC72820DA7A3A0000CBE9 /* AnchorWindowBasedSpaceSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorWindowBasedSpaceSwitcher.swift; sourceTree = "<group>"; };
 		51AAC72A20DAE7760000CBE9 /* SpaceChangeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceChangeObserver.swift; sourceTree = "<group>"; };
 		51E9D2F521B9887E00231FC8 /* SpacesPrivateAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SpacesPrivateAPI.xcodeproj; path = SpacesPrivateAPI/SpacesPrivateAPI.xcodeproj; sourceTree = "<group>"; };
-		51E9D30421B9AE0500231FC8 /* CGPrivateAPIBasedSpaceSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPrivateAPIBasedSpaceSwitcher.swift; sourceTree = "<group>"; };
+		51E9D30421B9AE0500231FC8 /* SpacesPrivateApiTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacesPrivateApiTool.swift; sourceTree = "<group>"; };
 		51E9D30621B9AE2A00231FC8 /* SpaceSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceSwitcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +145,8 @@
 				51E9D30621B9AE2A00231FC8 /* SpaceSwitcher.swift */,
 				51AAC72A20DAE7760000CBE9 /* SpaceChangeObserver.swift */,
 				51AAC72820DA7A3A0000CBE9 /* AnchorWindowBasedSpaceSwitcher.swift */,
-				51E9D30421B9AE0500231FC8 /* CGPrivateAPIBasedSpaceSwitcher.swift */,
+				51E9D30421B9AE0500231FC8 /* SpacesPrivateApiTool.swift */,
+				5123E53F2243BDA90079AA60 /* AnchorWindowVendor.swift */,
 				51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */,
 				51AAC70520DA79400000CBE9 /* Info.plist */,
 				5110DB7520DBB5A400D3A409 /* Appkit-categories.swift */,
@@ -321,10 +324,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5123E5402243BDA90079AA60 /* AnchorWindowVendor.swift in Sources */,
 				512B685B20DB0970006D54D1 /* SpaceChangeObserver.swift in Sources */,
 				5110DB7620DBB5A400D3A409 /* Appkit-categories.swift in Sources */,
 				51E9D30721B9AE2A00231FC8 /* SpaceSwitcher.swift in Sources */,
-				51E9D30521B9AE0500231FC8 /* CGPrivateAPIBasedSpaceSwitcher.swift in Sources */,
+				51E9D30521B9AE0500231FC8 /* SpacesPrivateApiTool.swift in Sources */,
 				51AAC72920DA7A3A0000CBE9 /* AnchorWindowBasedSpaceSwitcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
