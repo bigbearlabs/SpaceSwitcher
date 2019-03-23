@@ -188,9 +188,8 @@ extension AnchorWindowBasedSpaceSwitcher: SpaceChangeObserver {
     
       self.ensureNoMultipleAnchorWindowsInSpace() {
     
-        if let currentSpaceToken = self.spaceTokenForCurrentSpace {
-          self.changeHandler(currentSpaceToken)
-        }
+        let currentSpaceToken = self.spaceTokenForCurrentSpace!
+        self.changeHandler(currentSpaceToken)
       }
     }
   }
