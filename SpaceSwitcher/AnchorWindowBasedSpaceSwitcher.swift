@@ -46,14 +46,19 @@ extension AnchorWindowOrchestrator {
     let anchorWindows = self.anchorWindowControllersBySpaceToken.map { $0.value.window!}
     
     // when > 1 anchor window found in space,
+    let mainScreen = NSScreen.main
     let anchorWindowsInSpace = anchorWindows.filter {
       $0.isVisible && $0.isOnActiveSpace
+        // filter to main screen only.
+        && $0.screen == mainScreen
     }
     
     guard anchorWindowsInSpace.count <= 1 else {
       
       // remove all but the first one.
       let obsoleteAnchorWindows = anchorWindowsInSpace.dropFirst()
+      
+      print("will remove obsolete windows \(obsoleteAnchorWindows) ")
       
       self.anchorWindowControllersBySpaceToken = self.anchorWindowControllersBySpaceToken.filter {
         $0.value.window != nil
