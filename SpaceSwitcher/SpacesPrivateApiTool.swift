@@ -5,7 +5,7 @@ import BBLSpaces
 class SpacesPrivateApiTool {
   
   var spaceIds: [SpaceToken] {
-    let spaceIds = spacesBroker.probeResult.screens.flatMap { $0.spaceIds }
+    let spaceIds = self.spacesBroker.spacesInfo.screens.flatMap { $0.spaceIds }
     return spaceIds as? [SpaceToken] ?? []
   }
   
@@ -31,7 +31,7 @@ class SpacesPrivateApiTool {
 
     // * position anchor window within the screen's visible frame.
     
-    let spacesInfo = spacesBroker.probeResult
+    let spacesInfo = spacesBroker.spacesInfo
     let screenInfo = spacesInfo.screens.first {
       $0.spaceIds.map { $0.intValue }
         .contains(spaceId)

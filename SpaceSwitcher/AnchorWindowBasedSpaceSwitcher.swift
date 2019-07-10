@@ -43,13 +43,14 @@ extension AnchorWindowOrchestrator {
   }
   
   
-  func ensureNoMultipleAnchorWindowsInSpace(completionHandler: @escaping () -> Void) {
-    let anchorWindows = self.anchorWindowControllersBySpaceToken.map { $0.value.window!}
+  func ensureSingeAnchorWindowInActiveSpace(completionHandler: @escaping () -> Void) {
     
     // when > 1 anchor window found in space,
-    let anchorWindowsInSpace = anchorWindows.filter {
-      $0.isOnMainScreenActiveSpace
-    }
+    let anchorWindowsInSpace = self.anchorWindowControllersBySpaceToken.values
+      .filter {
+        $0.window?.isOnMainScreenActiveSpace == true
+      }
+      .map { $0.window! }
     
     guard anchorWindowsInSpace.count <= 1 else {
       
@@ -82,14 +83,14 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
   
   var anchorWindowControllersBySpaceToken: [SpaceToken : NSWindowController] = [:]
   
-  let changeHandler: (SpaceToken?) -> ()
+  let spaceChangeHandler: (SpaceToken?) -> ()
 
 
   var spacesPrivateApiTool: SpacesPrivateApiTool?
     = SpacesPrivateApiTool()
   
   public init(changeHandler: @escaping (SpaceToken?) -> () = {_ in }) {
-    self.changeHandler = changeHandler
+    self.spaceChangeHandler = changeHandler
     
     super.init()
     
@@ -102,7 +103,15 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
     onSpaceChanged()
   }
   
+  fileprivate func removeAnchor(spaceToken: SpaceToken) {
+    if let window = self.anchorWindowControllersBySpaceToken[spaceToken] {
+      print("closing and removing anchor window \(window) for \(spaceToken)")
+      window.close()
+    }
+    self.anchorWindowControllersBySpaceToken.removeValue(forKey: spaceToken)
+  }
   
+
   // MARK: -
   
   public var spaceTokens: [SpaceToken] {
@@ -124,7 +133,7 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
   public func switchToSpace(token: SpaceToken) {
     self.activateAnchorWindow(forSpaceToken: token)
     
-    ensureNoMultipleAnchorWindowsInSpace {}
+    ensureSingeAnchorWindowInActiveSpace {}
   }
   
   
@@ -133,7 +142,7 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
   func placeAnchorWindowInActiveSpace() {
     
     defer {
-      ensureNoMultipleAnchorWindowsInSpace() {}
+      ensureSingeAnchorWindowInActiveSpace() {}
     }
     
     let anchorWindowController = anchorWindowVendor.newAnchorWindowController()
@@ -174,11 +183,21 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
 
 extension AnchorWindowBasedSpaceSwitcher: SpaceChangeObserver {
   
-  /// place an anchor whenever it is found that no anchor window exists for the current space.
+  
+  /// place an anchor whenever no anchor window exists for the active space.
+  /// remove anchors for space ids that no longer exist.
   public func onSpaceChanged() {
     
+    // remove anchors for spaces that don't exist any more.
+    if let spaceIds = spacesPrivateApiTool?.spaceIds {
+      let removedSpaceIds = Set(self.anchorWindowControllersBySpaceToken.keys).subtracting(spaceIds)
+      for id in removedSpaceIds {
+        self.removeAnchor(spaceToken: id)
+      }
+    }
+    
     // appears we need some breathing room before isOnActiveSpace is reported properly over all windows.
-    self.ensureNoMultipleAnchorWindowsInSpace() {
+    self.ensureSingeAnchorWindowInActiveSpace() {
     
       if self.anchorWindowForActiveSpace == nil {
         
@@ -186,10 +205,10 @@ extension AnchorWindowBasedSpaceSwitcher: SpaceChangeObserver {
         self.placeAnchorWindowInActiveSpace()
       }
     
-      self.ensureNoMultipleAnchorWindowsInSpace() {
+      self.ensureSingeAnchorWindowInActiveSpace() {
     
-        let currentSpaceToken = self.spaceTokenForActiveSpace!
-        self.changeHandler(currentSpaceToken)
+        let activeSpaceToken = self.spaceTokenForActiveSpace!
+        self.spaceChangeHandler(activeSpaceToken)
       }
     }
   }
