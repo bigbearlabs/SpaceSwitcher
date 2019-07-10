@@ -4,6 +4,22 @@ import SpaceSwitcher
 
 class ViewController: NSViewController {
 
+
+  var activeSpaceToken: SpaceToken? {
+    didSet {
+      self.previousSpaceToken = oldValue
+      
+      
+      self.refreshSwitchToSpaceButtons()
+      
+      for window in NSApp.windows {
+        window.setIsVisible(true)
+      }
+    }
+  }
+  
+  var previousSpaceToken: SpaceToken?
+
   
   @IBOutlet weak var buttonsStackView: NSStackView!
   
@@ -30,21 +46,26 @@ class ViewController: NSViewController {
   func refreshSwitchToSpaceButtons() {
     self.removeAllSwitchToSpaceButtons()
     
-    let currentSpaceToken = self.spaceSwitcher.spaceTokenForActiveSpace
-    for token in self.spaceSwitcher.spaceTokens {
-      let isCurrent = (token == currentSpaceToken)
-      self.addButton(forSpaceToken: token, markAsCurrent: isCurrent)
+    let tokens = self.spaceSwitcher.spaceTokens
+    
+    if let previousToken = self.previousSpaceToken,
+      tokens.contains(previousToken) {
+      self.addButton(label: "last: ", forSpaceToken: previousToken)
+    }
+    
+    for token in tokens {
+      let isActive = (token == self.activeSpaceToken)
+      self.addButton(label: isActive ? "*" : "", forSpaceToken: token)
     }
   }
 
   
   // MARK: - internals
   
-  func addButton(forSpaceToken spaceToken: Int, markAsCurrent: Bool = false) {
-    var title = String(spaceToken)
-    if markAsCurrent {
-      title = "\(title) *"
-    }
+  func addButton(label: String = "", forSpaceToken spaceToken: Int) {
+
+    let title = "\(label) \(String(spaceToken))".trimmingCharacters(in: .whitespacesAndNewlines)
+
     let button = NSButton(
       title: title,
       target: self,
@@ -60,7 +81,8 @@ class ViewController: NSViewController {
     }
   }
   
-  
+    
+  // MARK: -
   var spaceSwitcher: SpaceSwitcher {
     return (NSApp.delegate as! AppDelegate).spaceSwitcher!
   }
@@ -77,17 +99,16 @@ extension ViewController: SpaceChangeObserver {
     // ensure we handle the event after SpaceSwitcher.
     DispatchQueue.main.async {
 
-      self.refreshSwitchToSpaceButtons()
-      
-      for window in NSApp.windows {
-        window.setIsVisible(true)
-      }
+      self.activeSpaceToken = self.spaceSwitcher.spaceTokenForActiveSpace
     }
     
   }
   
 }
 
+
+
+// MARK: -
 
 class FullScreenAnchorViewController: NSViewController {
   
