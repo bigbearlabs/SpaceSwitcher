@@ -30,7 +30,7 @@ class ViewController: NSViewController {
   func refreshSwitchToSpaceButtons() {
     self.removeAllSwitchToSpaceButtons()
     
-    let currentSpaceToken = self.spaceSwitcher.spaceTokenForCurrentSpace
+    let currentSpaceToken = self.spaceSwitcher.spaceTokenForActiveSpace
     for token in self.spaceSwitcher.spaceTokens {
       let isCurrent = (token == currentSpaceToken)
       self.addButton(forSpaceToken: token, markAsCurrent: isCurrent)
@@ -97,3 +97,4 @@ class FullScreenAnchorViewController: NSViewController {
   }
   
 }
+

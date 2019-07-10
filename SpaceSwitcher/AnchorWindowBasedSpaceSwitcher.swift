@@ -10,13 +10,14 @@ protocol AnchorWindowOrchestrator: AnyObject {
 
 extension AnchorWindowOrchestrator {
   
-  var anchorWindowForCurrentSpace: NSWindow? {
+  var anchorWindowForActiveSpace: NSWindow? {
     
     //    ensureNoMultipleAnchorWindowsInSpace() {
     
-    let anchorWindowsOnSpace = self.anchorWindowControllersBySpaceToken.map { $0.value.window! }.filter {
-      $0.isVisible && $0.isOnActiveSpace
-    }
+    let anchorWindowsOnSpace = self.anchorWindowControllersBySpaceToken.map { $0.value.window! }
+      .filter {
+        $0.isOnMainScreenActiveSpace
+      }
     //
     //    assert(anchorWindowsOnSpace.count <= 1,
     //           "multiple anchor windows found in space; please file a bug.")
@@ -33,7 +34,7 @@ extension AnchorWindowOrchestrator {
         fatalError("could not find anchor window \(forSpaceToken) to activate; please file a bug.")
     }
 
-    guard anchorWindowController.window != anchorWindowForCurrentSpace else {
+    guard anchorWindowController.window != anchorWindowForActiveSpace else {
       // anchor window is already in current space.
       return
     }
@@ -46,11 +47,8 @@ extension AnchorWindowOrchestrator {
     let anchorWindows = self.anchorWindowControllersBySpaceToken.map { $0.value.window!}
     
     // when > 1 anchor window found in space,
-    let mainScreen = NSScreen.main
     let anchorWindowsInSpace = anchorWindows.filter {
-      $0.isVisible && $0.isOnActiveSpace
-        // filter to main screen only.
-        && $0.screen == mainScreen
+      $0.isOnMainScreenActiveSpace
     }
     
     guard anchorWindowsInSpace.count <= 1 else {
@@ -112,15 +110,8 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
       ?? Array(self.anchorWindowControllersBySpaceToken.keys)
   }
   
-  public var spaceTokenForCurrentSpace: SpaceToken? {
-    return anchorWindowControllersBySpaceToken.first { $0.value.window ===  self.anchorWindowForCurrentSpace }?.key
-  }
-  
-  public func spaceTokenForCurrentSpace(currentAnchorController: NSWindowController) -> SpaceToken {
-    // if private api available, return space id.
-    // all anchors must have been placed prior.
-    return spacesPrivateApiTool?.currentSpaceId
-      ?? currentAnchorController.window!.windowNumber
+  public var spaceTokenForActiveSpace: SpaceToken? {
+    return anchorWindowControllersBySpaceToken.first { $0.value.window ===  self.anchorWindowForActiveSpace }?.key
   }
   
   func anchorWindowController(spaceToken: SpaceToken) -> NSWindowController? {
@@ -139,7 +130,7 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
   
   // MARK: -
   
-  func placeAnchorWindowInCurrentSpace() {
+  func placeAnchorWindowInActiveSpace() {
     
     defer {
       ensureNoMultipleAnchorWindowsInSpace() {}
@@ -167,7 +158,11 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
       return
     }
 
-    let spaceToken = self.spaceTokenForCurrentSpace(currentAnchorController: anchorWindowController)
+    let spaceToken =
+      self.spacesPrivateApiTool?.activeSpaceId
+      // default to using the anchor window's window number.
+      ?? anchorWindowController.window!.windowNumber
+        
     self.anchorWindowControllersBySpaceToken[spaceToken] = anchorWindowController
     
   }
@@ -185,15 +180,15 @@ extension AnchorWindowBasedSpaceSwitcher: SpaceChangeObserver {
     // appears we need some breathing room before isOnActiveSpace is reported properly over all windows.
     self.ensureNoMultipleAnchorWindowsInSpace() {
     
-      if self.anchorWindowForCurrentSpace == nil {
+      if self.anchorWindowForActiveSpace == nil {
         
         // drop an anchor.
-        self.placeAnchorWindowInCurrentSpace()
+        self.placeAnchorWindowInActiveSpace()
       }
     
       self.ensureNoMultipleAnchorWindowsInSpace() {
     
-        let currentSpaceToken = self.spaceTokenForCurrentSpace!
+        let currentSpaceToken = self.spaceTokenForActiveSpace!
         self.changeHandler(currentSpaceToken)
       }
     }
@@ -227,3 +222,11 @@ extension NSWindow {
 }
 
 
+
+
+extension NSWindow {
+  var isOnMainScreenActiveSpace: Bool {
+    return self.isOnActiveSpace
+      && self.screen == NSScreen.main
+  }
+}

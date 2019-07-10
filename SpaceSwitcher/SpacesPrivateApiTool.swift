@@ -9,8 +9,8 @@ class SpacesPrivateApiTool {
     return spaceIds as? [SpaceToken] ?? []
   }
   
-  var currentSpaceId: SpaceToken {
-    return spacesBroker.currentSpaceId
+  var activeSpaceId: SpaceToken {
+    return spacesBroker.activeSpaceId
   }
   
   func placeAnchorWindowsInAllSpaces() -> [SpaceToken : NSWindowController] {

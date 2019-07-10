@@ -19,6 +19,6 @@ class AnchorWindowVendor {
 
 
 func setup(anchorWindowController: NSWindowController) {
-  anchorWindowController.window?.transparent = true
+//  anchorWindowController.window?.transparent = true
   anchorWindowController.window?.setIsVisible(true)
 }

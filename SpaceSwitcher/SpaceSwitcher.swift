@@ -5,7 +5,7 @@ public typealias SpaceToken = Int
 
 public protocol SpaceSwitcher {
   
-  var spaceTokenForCurrentSpace: SpaceToken? { get }
+  var spaceTokenForActiveSpace: SpaceToken? { get }
   
   var spaceTokens: [SpaceToken] { get }
   
