@@ -56,25 +56,43 @@ class ViewController: NSViewController {
   func refreshSwitchToSpaceButtons() {
     self.removeAllSwitchToSpaceButtons()
     
-    for previous in self.state.previousSpaceTokens {
-      self.addButton(label: "last: ", forSpaceToken: previous)
+    let state = self.state
+
+    let previousSpacesTuples = state.previousSpaceTokens.map {
+      ("Back to Space \($0)", $0)
+    }
+
+    let currents = state.currentSpaceTokens
+    let activeToken = state.activeSpaceToken
+    let spacesTuples = state.spaceTokens.map { e -> [(String, SpaceToken)] in
+      let (displayId, spaceTokens) = e
+      
+      return spaceTokens.map { token -> (String, SpaceToken) in
+        let isCurrent = currents.contains(token)
+        let isActive = token == activeToken
+        return (
+          "\(isCurrent ? "*" : "") \(isActive ? "*" : "") \(displayId)",
+          token
+        )
+      }
     }
     
-    let currents = self.state.currentSpaceTokens
-    for e in self.state.spaceTokens {
-      let (did, tokens) = e
-      for token in tokens {
-        let isCurrent = currents.contains(token)
-        let isActive = self.state.activeSpaceToken == token
-        self.addButton(label: "\(isCurrent ? "*" : "") \(isActive ? "*" : "") \(did) ", forSpaceToken: token)
-      }
+    let controlLabelTuples = previousSpacesTuples + spacesTuples.flatMap { $0 }
+    
+    let buttons = controlLabelTuples.map { e -> NSButton in
+      let (label, spaceToken) = e
+      return button(label: label, forSpaceToken: spaceToken)
+    }
+    
+    for b in buttons {
+      buttonsStackView.addView(b, in: .top)
     }
   }
 
   
   // MARK: - internals
   
-  func addButton(label: String = "", forSpaceToken spaceToken: Int) {
+  func button(label: String = "", forSpaceToken spaceToken: Int) -> NSButton {
 
     let title = "\(label) \(String(spaceToken))".trimmingCharacters(in: .whitespacesAndNewlines)
 
@@ -83,8 +101,7 @@ class ViewController: NSViewController {
       target: self,
       action: #selector(switchToSpace(_:)))
     button.cell!.representedObject = spaceToken
-
-    buttonsStackView.addView(button, in: .top)
+    return button
   }
   
   func removeAllSwitchToSpaceButtons() {
@@ -134,7 +151,7 @@ func stateTuple(_ spacesInfo: SpacesInfo) -> ([DisplayId : [SpaceToken]], [Space
 
 // MARK: -
 
-class FullScreenAnchorViewController: NSViewController {
+class AnchorViewController: NSViewController {
   
 
   @IBAction func action_hideWindow(_ sender: Any) {
