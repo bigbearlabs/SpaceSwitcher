@@ -31,7 +31,7 @@
         <!--Anchor View Controller-->
         <scene sceneID="MHn-Ah-FV8">
             <objects>
-                <viewController id="17g-st-7M5" customClass="AnchorViewController" customModule="SpaceSwitcherDemo" sceneMemberID="viewController">
+                <viewController id="17g-st-7M5" customClass="AnchorViewController" customModule="SpaceSwitcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Wnv-Xg-oeh">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>

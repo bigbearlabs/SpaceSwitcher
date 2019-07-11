@@ -1,25 +1,32 @@
 import Cocoa
+
 import SpaceSwitcher
 
 
 
+var spaceSwitcher = AnchorWindowBasedSpaceSwitcher()
+//    spaceSwitcher = CGPrivateAPIBasedSpaceSwitcher()
+
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-  var spaceSwitcher: SpaceSwitcher!
-
   
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     
     // SpaceSwitcher will obtain a space token every time the app discovers a new space.
     // the info is used by ViewController to add a button that will switch to each discovered
     // space.
+    _ = spaceSwitcher
     
-    spaceSwitcher = AnchorWindowBasedSpaceSwitcher()
-    
-//    spaceSwitcher = CGPrivateAPIBasedSpaceSwitcher()
+
+    _ = self.statusItemController
   }
 
+  
+  lazy var statusItemController: SpacesSwitcherStatusItemController = {
+    SpacesSwitcherStatusItemController(image: NSImage(named: NSImage.goBackTemplateName)!)
+  }()
+  
 }
 
 
@@ -35,4 +42,3 @@ class DemoPanel: NSPanel {
     return false
   }
 }
-

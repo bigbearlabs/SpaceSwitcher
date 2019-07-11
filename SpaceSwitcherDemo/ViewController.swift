@@ -49,7 +49,7 @@ class ViewController: NSViewController {
   func switchToSpace(_ spaceButton: NSButton) {
     let spaceToken = spaceButton.cell!.representedObject as! Int
     
-    self.spaceSwitcher.switchToSpace(token: spaceToken)
+    spaceSwitcher.switchToSpace(token: spaceToken)
   }
 
   
@@ -58,28 +58,9 @@ class ViewController: NSViewController {
     
     let state = self.state
 
-    let previousSpacesTuples = state.previousSpaceTokens.map {
-      ("Back to Space \($0)", $0)
-    }
+    let _spaceSwitchLabelTuples = spaceSwitchLabelTuples(from: state)
 
-    let currents = state.currentSpaceTokens
-    let activeToken = state.activeSpaceToken
-    let spacesTuples = state.spaceTokens.map { e -> [(String, SpaceToken)] in
-      let (displayId, spaceTokens) = e
-      
-      return spaceTokens.map { token -> (String, SpaceToken) in
-        let isCurrent = currents.contains(token)
-        let isActive = token == activeToken
-        return (
-          "\(isCurrent ? "*" : "") \(isActive ? "*" : "") \(displayId)",
-          token
-        )
-      }
-    }
-    
-    let controlLabelTuples = previousSpacesTuples + spacesTuples.flatMap { $0 }
-    
-    let buttons = controlLabelTuples.map { e -> NSButton in
+    let buttons = _spaceSwitchLabelTuples.map { e -> NSButton in
       let (label, spaceToken) = e
       return button(label: label, forSpaceToken: spaceToken)
     }
@@ -94,7 +75,7 @@ class ViewController: NSViewController {
   
   func button(label: String = "", forSpaceToken spaceToken: Int) -> NSButton {
 
-    let title = "\(label) \(String(spaceToken))".trimmingCharacters(in: .whitespacesAndNewlines)
+    let title = "\(label)".trimmingCharacters(in: .whitespacesAndNewlines)
 
     let button = NSButton(
       title: title,
@@ -112,51 +93,72 @@ class ViewController: NSViewController {
   
     
   // MARK: -
-  var spaceSwitcher: SpaceSwitcher {
-    return (NSApp.delegate as! AppDelegate).spaceSwitcher!
-  }
   
   lazy var spacesObservation = {
     SpacesChangeObserver { spacesInfo in
       
-      let (tokens, currents, active) = stateTuple(spacesInfo)
-      
-      var newState = self.state
-      newState.spaceTokens = tokens
-      newState.previousSpaceTokens = newState.currentSpaceTokens
-      newState.currentSpaceTokens = currents
-      newState.activeSpaceToken = active
-      
-      self.state = newState
+      self.state = stateTuple(spacesInfo, self.state.previousSpaceTokens)
     }
     
   }()
   
 }
 
-func stateTuple(_ spacesInfo: SpacesInfo) -> ([DisplayId : [SpaceToken]], [SpaceToken], SpaceToken) {
+func stateTuple(_ spacesInfo: SpacesInfo, _ previousSpaces: [SpaceToken])
+  -> ViewController.State {
   
   let ts = spacesInfo.screens.map {
     ($0.displayId, $0.spaceIds.map { $0.intValue })
   }
   let states = Dictionary(uniqueKeysWithValues: ts)
   
-  return (
+  let t = (
     spacesByDisplay: states,
+    activeSpace: spacesInfo.activeSpaceId,
     currentSpaces: spacesInfo.currentSpaceIds.map { $0.intValue },
-    activeSpace: spacesInfo.activeSpaceId
+    previousSpaces: previousSpaces
   )
+    
+  let (
+    spacesByDisplay,
+    activeSpace,
+    currentSpaces,
+    previousSpaces
+  ) = t
+  
+  var newState = ViewController.State()
+  newState.spaceTokens = spacesByDisplay
+  newState.activeSpaceToken = activeSpace
+  newState.currentSpaceTokens = currentSpaces
+  newState.previousSpaceTokens = previousSpaces
+  return newState
+}
+
+
+func spaceSwitchLabelTuples(from state: ViewController.State) -> [(String, SpaceToken)] {
+  let previousSpacesTuples = state.previousSpaceTokens.map {
+    ("Back to Space \($0)", $0)
+  }
+  
+  let currents = state.currentSpaceTokens
+  let activeToken = state.activeSpaceToken
+  let spacesTuples = state.spaceTokens.map { e -> [(String, SpaceToken)] in
+    let (displayId, spaceTokens) = e
+    
+    return spaceTokens.map { token -> (String, SpaceToken) in
+      let isCurrent = currents.contains(token)
+      let isActive = token == activeToken
+      return (
+        "\(isCurrent ? "*" : "") \(isActive ? "*" : "") \(displayId) \(token)",
+        token
+      )
+    }
+  }
+  
+  let controlLabelTuples = previousSpacesTuples + spacesTuples.flatMap { $0 }
+  
+  return controlLabelTuples
 }
 
 
 // MARK: -
-
-class AnchorViewController: NSViewController {
-  
-
-  @IBAction func action_hideWindow(_ sender: Any) {
-    self.view.window?.orderOut(self)
-  }
-  
-}
-
