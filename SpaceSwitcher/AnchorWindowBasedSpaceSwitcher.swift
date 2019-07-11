@@ -114,23 +114,6 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
 
   // MARK: -
   
-  public var stateTuple: (
-    spacesByDisplay: [DisplayId : [SpaceToken]],
-    currentSpaces: [SpaceToken],
-    activeSpace: SpaceToken) {
-    let info = spacesPrivateApiTool!.spacesBroker.spacesInfo
-    
-    let ts = info.screens.map {
-      ($0.displayId, $0.spaceIds.map { $0.intValue })
-    }
-    let states = Dictionary(uniqueKeysWithValues: ts)
-
-    return (
-      spacesByDisplay: states,
-      currentSpaces: info.currentSpaceIds.map { $0.intValue },
-      activeSpace: info.activeSpaceId
-    )
-  }
   
   public var spaceTokenForActiveSpace: SpaceToken? {
     return anchorWindowControllersBySpaceToken.first { $0.value.window ===  self.anchorWindowForActiveSpace }?.key
@@ -201,8 +184,15 @@ extension AnchorWindowBasedSpaceSwitcher: SpaceChangeObserver {
   /// remove anchors for space ids that no longer exist.
   public func onSpaceChanged() {
     
-    // remove anchors for spaces that don't exist any more.
     if let spaceIds = spacesPrivateApiTool?.spaceIds {
+      // drop anchors for spaces which haven't been seen.
+      let newSpaceIds = Set(spaceIds).subtracting(self.anchorWindowControllersBySpaceToken.keys)
+      for id in newSpaceIds {
+        let anchorWindow = self.spacesPrivateApiTool?.placeAnchorWindow(inSpace: id)
+        self.anchorWindowControllersBySpaceToken[id] = anchorWindow
+      }
+      
+      // remove anchors for spaces that don't exist any more.
       let removedSpaceIds = Set(self.anchorWindowControllersBySpaceToken.keys).subtracting(spaceIds)
       for id in removedSpaceIds {
         self.removeAnchor(spaceToken: id)

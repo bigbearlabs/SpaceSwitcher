@@ -1,5 +1,7 @@
 import Cocoa
 import SpaceSwitcher
+import BBLSpaces
+
 
 
 class ViewController: NSViewController {
@@ -37,9 +39,7 @@ class ViewController: NSViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    observeSpaceChangedNotifications()
-    
-    onSpaceChanged()
+    _ = self.spacesObservation
   }
 
   
@@ -64,8 +64,9 @@ class ViewController: NSViewController {
     for e in self.state.spaceTokens {
       let (did, tokens) = e
       for token in tokens {
-        let isActive = (currents.contains(token))
-        self.addButton(label: "\(isActive ? "*" : "") \(did) ", forSpaceToken: token)
+        let isCurrent = currents.contains(token)
+        let isActive = self.state.activeSpaceToken == token
+        self.addButton(label: "\(isCurrent ? "*" : "") \(isActive ? "*" : "") \(did) ", forSpaceToken: token)
       }
     }
   }
@@ -98,33 +99,37 @@ class ViewController: NSViewController {
     return (NSApp.delegate as! AppDelegate).spaceSwitcher!
   }
   
-}
-
-
-// MARK: - responding to events
-
-extension ViewController: SpaceChangeObserver {
-  
-  func onSpaceChanged() {
-    
-    // ensure we handle the event after SpaceSwitcher.
-    DispatchQueue.main.async {
-
-      let (tokens, currents, active) = self.spaceSwitcher.stateTuple
+  lazy var spacesObservation = {
+    SpacesChangeObserver { spacesInfo in
+      
+      let (tokens, currents, active) = stateTuple(spacesInfo)
       
       var newState = self.state
       newState.spaceTokens = tokens
       newState.previousSpaceTokens = newState.currentSpaceTokens
       newState.currentSpaceTokens = currents
       newState.activeSpaceToken = active
-        
+      
       self.state = newState
     }
     
-  }
+  }()
   
 }
 
+func stateTuple(_ spacesInfo: SpacesInfo) -> ([DisplayId : [SpaceToken]], [SpaceToken], SpaceToken) {
+  
+  let ts = spacesInfo.screens.map {
+    ($0.displayId, $0.spaceIds.map { $0.intValue })
+  }
+  let states = Dictionary(uniqueKeysWithValues: ts)
+  
+  return (
+    spacesByDisplay: states,
+    currentSpaces: spacesInfo.currentSpaceIds.map { $0.intValue },
+    activeSpace: spacesInfo.activeSpaceId
+  )
+}
 
 
 // MARK: -
