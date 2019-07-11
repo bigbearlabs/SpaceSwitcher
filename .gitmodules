@@ -1,0 +1,3 @@
+[submodule "BBLSpaces"]
+	path = BBLSpaces
+	url = git@bitbucket.org:bigbearlabs/bblspaces.git
