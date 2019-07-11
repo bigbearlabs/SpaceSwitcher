@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Full Screen Anchor Window Controller-->
+        <!--Anchor Window Controller-->
         <scene sceneID="nOY-76-dZc">
             <objects>
                 <customObject id="eig-5K-CfP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <windowController storyboardIdentifier="AnchorWindowController" id="CKm-Sm-T9k" userLabel="Full Screen Anchor Window Controller" sceneMemberID="viewController">
-                    <window key="window" title="FullScreenAnchorWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="1Qb-Zm-G89" customClass="NSPanel">
+                <windowController storyboardIdentifier="AnchorWindowController" id="CKm-Sm-T9k" userLabel="Anchor Window Controller" sceneMemberID="viewController">
+                    <window key="window" title="FullScreenAnchorWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="1Qb-Zm-G89" userLabel="AnchorWindow" customClass="NSPanel">
                         <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES" nonactivatingPanel="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" stationary="YES" ignoresCycle="YES" fullScreenAuxiliary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="175" y="-246"/>
         </scene>
-        <!--Full Screen Anchor View Controller-->
+        <!--Anchor View Controller-->
         <scene sceneID="MHn-Ah-FV8">
             <objects>
-                <viewController id="17g-st-7M5" customClass="FullScreenAnchorViewController" customModule="SpaceSwitcherDemo" sceneMemberID="viewController">
+                <viewController id="17g-st-7M5" customClass="AnchorViewController" customModule="SpaceSwitcherDemo" sceneMemberID="viewController">
                     <view key="view" id="Wnv-Xg-oeh">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>

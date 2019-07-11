@@ -147,9 +147,9 @@
 			isa = PBXGroup;
 			children = (
 				512B685C20DB11E1006D54D1 /* README.md */,
-				512E408722D63CC800078E74 /* BBLSpaces.xcodeproj */,
 				51AAC70320DA79400000CBE9 /* SpaceSwitcher */,
 				51AAC71420DA79B80000CBE9 /* SpaceSwitcherDemo */,
+				512E408722D63CC800078E74 /* BBLSpaces.xcodeproj */,
 				512E40A222D65B0D00078E74 /* DisplayInfoTool */,
 				51AAC6CD20DA78D50000CBE9 /* Products */,
 				51E9D30221B9889300231FC8 /* Frameworks */,
