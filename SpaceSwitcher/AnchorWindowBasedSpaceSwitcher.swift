@@ -114,9 +114,22 @@ public class AnchorWindowBasedSpaceSwitcher: NSObject, SpaceSwitcher, AnchorWind
 
   // MARK: -
   
-  public var spaceTokens: [SpaceToken] {
-    return self.spacesPrivateApiTool?.spaceIds
-      ?? Array(self.anchorWindowControllersBySpaceToken.keys)
+  public var stateTuple: (
+    spacesByDisplay: [DisplayId : [SpaceToken]],
+    currentSpaces: [SpaceToken],
+    activeSpace: SpaceToken) {
+    let info = spacesPrivateApiTool!.spacesBroker.spacesInfo
+    
+    let ts = info.screens.map {
+      ($0.displayId, $0.spaceIds.map { $0.intValue })
+    }
+    let states = Dictionary(uniqueKeysWithValues: ts)
+
+    return (
+      spacesByDisplay: states,
+      currentSpaces: info.currentSpaceIds.map { $0.intValue },
+      activeSpace: info.activeSpaceId
+    )
   }
   
   public var spaceTokenForActiveSpace: SpaceToken? {

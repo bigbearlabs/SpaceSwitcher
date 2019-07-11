@@ -5,10 +5,14 @@ public typealias SpaceToken = Int
 
 public protocol SpaceSwitcher {
   
-  var spaceTokenForActiveSpace: SpaceToken? { get }
-  
-  var spaceTokens: [SpaceToken] { get }
+  var stateTuple: (
+    spacesByDisplay: [DisplayId : [SpaceToken]],
+    currentSpaces: [SpaceToken],
+    activeSpace: SpaceToken
+  ) { get }
+
   
   func switchToSpace(token: SpaceToken)
 }
 
+public typealias DisplayId = String

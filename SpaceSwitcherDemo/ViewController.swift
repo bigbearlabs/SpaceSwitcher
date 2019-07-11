@@ -4,12 +4,24 @@ import SpaceSwitcher
 
 class ViewController: NSViewController {
 
-
-  var activeSpaceToken: SpaceToken? {
+  struct State {
+    var spaceTokens: [DisplayId : [SpaceToken]]
+    
+    var currentSpaceTokens: [SpaceToken]
+    var previousSpaceTokens: [SpaceToken]
+    
+    var activeSpaceToken: SpaceToken?
+    
+    init() {
+      self.spaceTokens = [:]
+      self.currentSpaceTokens = []
+      self.previousSpaceTokens = []
+      self.activeSpaceToken = nil
+    }
+  }
+  
+  var state = State() {
     didSet {
-      self.previousSpaceToken = oldValue
-      
-      
       self.refreshSwitchToSpaceButtons()
       
       for window in NSApp.windows {
@@ -18,9 +30,7 @@ class ViewController: NSViewController {
     }
   }
   
-  var previousSpaceToken: SpaceToken?
 
-  
   @IBOutlet weak var buttonsStackView: NSStackView!
   
   
@@ -46,16 +56,17 @@ class ViewController: NSViewController {
   func refreshSwitchToSpaceButtons() {
     self.removeAllSwitchToSpaceButtons()
     
-    let tokens = self.spaceSwitcher.spaceTokens
-    
-    if let previousToken = self.previousSpaceToken,
-      tokens.contains(previousToken) {
-      self.addButton(label: "last: ", forSpaceToken: previousToken)
+    for previous in self.state.previousSpaceTokens {
+      self.addButton(label: "last: ", forSpaceToken: previous)
     }
     
-    for token in tokens {
-      let isActive = (token == self.activeSpaceToken)
-      self.addButton(label: isActive ? "*" : "", forSpaceToken: token)
+    let currents = self.state.currentSpaceTokens
+    for e in self.state.spaceTokens {
+      let (did, tokens) = e
+      for token in tokens {
+        let isActive = (currents.contains(token))
+        self.addButton(label: "\(isActive ? "*" : "") \(did) ", forSpaceToken: token)
+      }
     }
   }
 
@@ -99,7 +110,15 @@ extension ViewController: SpaceChangeObserver {
     // ensure we handle the event after SpaceSwitcher.
     DispatchQueue.main.async {
 
-      self.activeSpaceToken = self.spaceSwitcher.spaceTokenForActiveSpace
+      let (tokens, currents, active) = self.spaceSwitcher.stateTuple
+      
+      var newState = self.state
+      newState.spaceTokens = tokens
+      newState.previousSpaceTokens = newState.currentSpaceTokens
+      newState.currentSpaceTokens = currents
+      newState.activeSpaceToken = active
+        
+      self.state = newState
     }
     
   }
