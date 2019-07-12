@@ -10,10 +10,10 @@
 		5110DB7620DBB5A400D3A409 /* Appkit-categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110DB7520DBB5A400D3A409 /* Appkit-categories.swift */; };
 		5123E5402243BDA90079AA60 /* AnchorWindowVendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5123E53F2243BDA90079AA60 /* AnchorWindowVendor.swift */; };
 		512B685B20DB0970006D54D1 /* SpaceChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC72A20DAE7760000CBE9 /* SpaceChangeObserver.swift */; };
-		512E408D22D63CD600078E74 /* BBLSpaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 512E408C22D63CC800078E74 /* BBLSpaces.framework */; };
-		512E408E22D63CE400078E74 /* BBLSpaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 512E408C22D63CC800078E74 /* BBLSpaces.framework */; };
-		512E408F22D63CE400078E74 /* BBLSpaces.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 512E408C22D63CC800078E74 /* BBLSpaces.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		512E40C422D7EDD900078E74 /* SpacesSwitcherStatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512E40C322D7EDD900078E74 /* SpacesSwitcherStatusItemController.swift */; };
+		512E40CB22D8966A00078E74 /* BBLSpaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 512E40CA22D8966900078E74 /* BBLSpaces.framework */; };
+		512E40CC22D8966F00078E74 /* BBLSpaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 512E40CA22D8966900078E74 /* BBLSpaces.framework */; };
+		512E40CD22D8966F00078E74 /* BBLSpaces.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 512E40CA22D8966900078E74 /* BBLSpaces.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		51402199224293A5006157A7 /* AnchorWindows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51402198224293A5006157A7 /* AnchorWindows.storyboard */; };
 		51AAC70620DA79400000CBE9 /* SpaceSwitcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		51AAC71620DA79B80000CBE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAC71520DA79B80000CBE9 /* AppDelegate.swift */; };
@@ -28,20 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		512E408B22D63CC800078E74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 512E408722D63CC800078E74 /* BBLSpaces.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 512E403922D6382900078E74;
-			remoteInfo = BBLSpaces;
-		};
-		512E409022D63CE500078E74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 512E408722D63CC800078E74 /* BBLSpaces.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 512E403822D6382900078E74;
-			remoteInfo = BBLSpaces;
-		};
 		51AAC72520DA79CD0000CBE9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 51AAC6C320DA78D50000CBE9 /* Project object */;
@@ -58,7 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				512E408F22D63CE400078E74 /* BBLSpaces.framework in Embed Frameworks */,
+				512E40CD22D8966F00078E74 /* BBLSpaces.framework in Embed Frameworks */,
 				51AAC72420DA79CD0000CBE9 /* SpaceSwitcher.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -70,8 +56,8 @@
 		5110DB7520DBB5A400D3A409 /* Appkit-categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Appkit-categories.swift"; sourceTree = "<group>"; };
 		5123E53F2243BDA90079AA60 /* AnchorWindowVendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorWindowVendor.swift; sourceTree = "<group>"; };
 		512B685C20DB11E1006D54D1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		512E408722D63CC800078E74 /* BBLSpaces.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BBLSpaces.xcodeproj; path = BBLSpaces/BBLSpaces.xcodeproj; sourceTree = "<group>"; };
 		512E40C322D7EDD900078E74 /* SpacesSwitcherStatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacesSwitcherStatusItemController.swift; sourceTree = "<group>"; };
+		512E40CA22D8966900078E74 /* BBLSpaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BBLSpaces.framework; path = Carthage/Build/Mac/BBLSpaces.framework; sourceTree = "<group>"; };
 		51402198224293A5006157A7 /* AnchorWindows.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AnchorWindows.storyboard; sourceTree = "<group>"; };
 		51AAC70220DA79400000CBE9 /* SpaceSwitcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpaceSwitcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51AAC70420DA79400000CBE9 /* SpaceSwitcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceSwitcher.h; sourceTree = "<group>"; };
@@ -94,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				512E408D22D63CD600078E74 /* BBLSpaces.framework in Frameworks */,
+				512E40CB22D8966A00078E74 /* BBLSpaces.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				512E408E22D63CE400078E74 /* BBLSpaces.framework in Frameworks */,
+				512E40CC22D8966F00078E74 /* BBLSpaces.framework in Frameworks */,
 				51AAC72320DA79CD0000CBE9 /* SpaceSwitcher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,21 +96,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		512E408822D63CC800078E74 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				512E408C22D63CC800078E74 /* BBLSpaces.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		51AAC6C220DA78D50000CBE9 = {
 			isa = PBXGroup;
 			children = (
 				512B685C20DB11E1006D54D1 /* README.md */,
 				51AAC70320DA79400000CBE9 /* SpaceSwitcher */,
 				51AAC71420DA79B80000CBE9 /* SpaceSwitcherDemo */,
-				512E408722D63CC800078E74 /* BBLSpaces.xcodeproj */,
 				51AAC6CD20DA78D50000CBE9 /* Products */,
 				51E9D30221B9889300231FC8 /* Frameworks */,
 			);
@@ -172,6 +149,7 @@
 		51E9D30221B9889300231FC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				512E40CA22D8966900078E74 /* BBLSpaces.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -221,7 +199,6 @@
 			);
 			dependencies = (
 				51AAC72620DA79CD0000CBE9 /* PBXTargetDependency */,
-				512E409122D63CE500078E74 /* PBXTargetDependency */,
 			);
 			name = SpaceSwitcherDemo;
 			productName = SpaceSwitcherDemo;
@@ -259,12 +236,6 @@
 			mainGroup = 51AAC6C220DA78D50000CBE9;
 			productRefGroup = 51AAC6CD20DA78D50000CBE9 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 512E408822D63CC800078E74 /* Products */;
-					ProjectRef = 512E408722D63CC800078E74 /* BBLSpaces.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				51AAC70120DA79400000CBE9 /* SpaceSwitcher */,
@@ -272,16 +243,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		512E408C22D63CC800078E74 /* BBLSpaces.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = BBLSpaces.framework;
-			remoteRef = 512E408B22D63CC800078E74 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		51AAC70020DA79400000CBE9 /* Resources */ = {
@@ -330,11 +291,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		512E409122D63CE500078E74 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BBLSpaces;
-			targetProxy = 512E409022D63CE500078E74 /* PBXContainerItemProxy */;
-		};
 		51AAC72620DA79CD0000CBE9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 51AAC70120DA79400000CBE9 /* SpaceSwitcher */;
@@ -545,6 +501,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = XK44TD8U4S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SpaceSwitcherDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -565,6 +525,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = XK44TD8U4S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SpaceSwitcherDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

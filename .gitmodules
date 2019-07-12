@@ -1,3 +1,3 @@
-[submodule "BBLSpaces"]
-	path = BBLSpaces
+[submodule "Carthage/Checkouts/bblspaces"]
+	path = Carthage/Checkouts/bblspaces
 	url = git@bitbucket.org:bigbearlabs/bblspaces.git
